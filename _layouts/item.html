@@ -4,16 +4,14 @@ layout: default
 <div class="card">
   <div class="card-header">
     <h1>
-      <img src="https://ms2db.github.io/resource/item/icon/{{ page.id }}.png" class="img-thumbnail">
+      <img src="https://ms2db.github.io/resource/{{ page.icon_url }}" class="img-thumbnail">
       {{ page.item_name }}
       <small class="fs-4 text-muted">{{ page.id }}</small>
     </h1>
   </div>
   <ul class="list-group list-group-flush">
-    <li class="list-group-item">{{ page.description }}</li>
-    <li class="list-group-item">
-      <span class="font-monospace">This is in monospace</span>
-    </li>
+    <li class="list-group-item">{{ page.tooltip_description }}</li>
+    <li class="list-group-item">{{ page.guide_description }}</li>
   </ul>
   <div class="card-footer">
     footer data
