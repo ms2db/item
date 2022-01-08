@@ -3,19 +3,42 @@ layout: default
 ---
 <div class="card">
   <div class="card-header">
-    <h1>
+    <h1 class="mb-0">
       <img src="https://ms2db.github.io/resource/{{ page.icon_url }}" class="img-thumbnail" style="min-height:75px;height:75px;">
       {{ page.item_name }}
       <small class="fs-4 text-muted">{{ page.id }}</small>
     </h1>
   </div>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item">{{ page.tooltip_description }}</li>
-    <li class="list-group-item">{{ page.guide_description }}</li>
-  </ul>
-  <div class="card-footer">
-    footer data
+  {% if page.sub_header %}
+  <div class="card-header text-muted">
+    {% for item in page.sub_header %}
+    {{ item }}
+    <br>
+    {% endfor %}
   </div>
+  {% endif %}
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">
+      <figure>
+        <blockquote class="blockquote fs-6">
+          {{ page.tooltip_description }}
+        </blockquote>
+        {% if page.guide_description %}
+        <figcaption class="blockquote-footer">
+          {{ page.guide_description }}
+        </figcaption>
+        {% endif %}
+      </figure>
+    </li>
+  </ul>
+  {% if page.footer %}
+  <div class="card-footer text-danger">
+    {% for item in page.footer %}
+    {{ item }}
+    <br>
+    {% endfor %}
+  </div>
+  {% endif %}
 </div>
 
 {{ content }}
