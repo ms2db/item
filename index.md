@@ -4,5 +4,35 @@
 
 layout: home
 ---
+<form class="input-group" action="/index.html" method="get">
+  <span class="input-group-text">Search</span>
+  <input type="text" class="form-control" id="search-box" name="query">
+  <button type="submit" class="btn btn-dark" value="search">
+    <i class="bi bi-search ms-2 me-2"></i>
+  </button>
+</form>
 
-Hello World!
+<div class="container mt-2">
+  <table class="table table-striped table-hover">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+      </tr>
+    </thead>
+    <tbody id="search-results"></tbody>
+  </table>
+</div>
+
+<script>
+  window.store = {
+    {% for page in site.pages %}
+      {% if page.layout != "item" %}{% continue %}{% endif %}
+      "{{ page.url | slugify }}": {
+        "name": "{{ page.item_name | xml_escape }}"
+      }{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  };
+</script>
+<script src="assets/js/lunr.js"></script>
+<script src="assets/js/search.js"></script>
