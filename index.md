@@ -4,7 +4,8 @@
 
 layout: home
 ---
-<form class="input-group" action="/index.html" method="get">
+<h1>Item Search</h1>
+<form class="input-group" method="get">
   <span class="input-group-text">Search</span>
   <input type="text" class="form-control" id="search-box" name="query">
   <button type="submit" class="btn btn-dark" value="search">
@@ -24,15 +25,5 @@ layout: home
   </table>
 </div>
 
-<script>
-  window.store = {
-    {% for page in site.pages %}
-      {% if page.layout != "item" %}{% continue %}{% endif %}
-      "{{ page.url | slugify }}": {
-        "name": "{{ page.item_name | xml_escape }}"
-      }{% unless forloop.last %},{% endunless %}
-    {% endfor %}
-  };
-</script>
 <script src="assets/js/lunr.js"></script>
 <script src="assets/js/search.js"></script>
